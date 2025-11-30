@@ -2,11 +2,14 @@ package br.com.fatec.modulo1.controller;
 
 import br.com.fatec.modulo1.controller.adapter.PessoaControllerAdapter;
 import br.com.fatec.modulo1.controller.dto.request.PessoaRequest;
+import br.com.fatec.modulo1.controller.dto.response.PageResponse;
 import br.com.fatec.modulo1.controller.dto.response.PessoaResponse;
 import br.com.fatec.modulo1.entity.Pessoa;
 //import br.com.fatec.modulo1.repository.MongoPessoaRepository;
 import br.com.fatec.modulo1.repository.PessoaRepository;
 import br.com.fatec.modulo1.service.PessoaService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +26,27 @@ public class PessoaController {
     }
 
     @GetMapping
-    public List<PessoaResponse> listar() {
-        return this.service.listar()
+    public PageResponse<PessoaResponse> listar(Pageable pageable) {
+        Page<Pessoa> page = service.listar(pageable);
+
+        List<PessoaResponse> content = page.getContent()
                 .stream()
                 .map(PessoaControllerAdapter::cast)
-                .collect(Collectors.toList());
+                .toList(); // usando Java 16+ List.toList()
+
+        return new PageResponse<>(
+                content,
+                page.getNumber(),
+                page.getSize(),
+                page.getTotalElements(),
+                page.getTotalPages(),
+                page.isFirst(),
+                page.isLast()
+        );
+//        return this.service.listar(pageable)
+//                .stream()
+//                .map(PessoaControllerAdapter::cast)
+//                .collect(Collectors.toList());
     }
 
     @PostMapping

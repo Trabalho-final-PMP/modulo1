@@ -2,6 +2,8 @@ package br.com.fatec.modulo1.service;
 
 import br.com.fatec.modulo1.entity.Pessoa;
 import br.com.fatec.modulo1.repository.PessoaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,8 +14,8 @@ public class PessoaService {
         this.repository = repository;
     }
 
-    public List<Pessoa> listar() {
-        return this.repository.findAll();
+    public Page<Pessoa> listar(Pageable pageable) {
+        return this.repository.findAllAtivosTrue(pageable);
     }
 
     public Pessoa salvar(Pessoa pessoa) {

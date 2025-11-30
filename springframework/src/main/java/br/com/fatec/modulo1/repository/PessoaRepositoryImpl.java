@@ -7,6 +7,8 @@ import br.com.fatec.modulo1.repository.client.PessoaMongoRepository;
 import br.com.fatec.modulo1.repository.orm.PessoaOrm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -24,13 +26,11 @@ public class PessoaRepositoryImpl implements PessoaRepository {
     }
 
     @Override
-    public List<Pessoa> findAll() {
+    public Page<Pessoa> findAllAtivosTrue(Pageable pageable) {
         try {
             LOG.info("Listando todas as pessoas");
-            return mongoRepo.findAll()
-                    .stream()
-                    .map(PessoaRepositoryAdapter::convertToEntity)
-                    .collect(Collectors.toList());
+            return mongoRepo.findAllByAtivoTrue(pageable)
+                    .map(PessoaRepositoryAdapter::convertToEntity);
         } catch (Exception e) {
             LOG.error("Erro ao listar pessoas: {}; data / hora: {}", e.getMessage(), LocalDateTime.now());
             throw new InternalServerException(e);
