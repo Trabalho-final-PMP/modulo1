@@ -18,5 +18,4 @@ COPY --from=builder /app/springframework/target/springframework-0.0.1-SNAPSHOT.j
 
 EXPOSE 8080
 
-# Mantém o uso da variável de ambiente MONGODB_URI
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
