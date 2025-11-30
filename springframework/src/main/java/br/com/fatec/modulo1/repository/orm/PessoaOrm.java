@@ -8,7 +8,7 @@ public record PessoaOrm(
         @Id
         String id,
         String nome,
-        String dataNascimento,
+        String dt_nascimento,
         Boolean ativo
 ) {
 }

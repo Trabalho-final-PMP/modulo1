@@ -10,7 +10,7 @@ public class PessoaAdapter {
         return new Pessoa(
                 orm.id(),
                 orm.nome(),
-                orm.dataNascimento(),
+                orm.dt_nascimento(),
                 orm.ativo()
         );
     }

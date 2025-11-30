@@ -19,4 +19,12 @@ public class PessoaService {
     public Pessoa salvar(Pessoa pessoa) {
         return this.repository.save(pessoa);
     }
+
+    public Pessoa atualizar(Pessoa pessoa) {
+        return this.repository.save(pessoa);
+    }
+
+    public void remover(String id) {
+        this.repository.delete(id);
+    }
 }

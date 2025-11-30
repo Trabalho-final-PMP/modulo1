@@ -22,13 +22,25 @@ public class PessoaController {
         return this.service.listar();
     }
 
-    @GetMapping("/teste")
-    public String teste() {
-        return "Ola";
-    }
-
     @PostMapping
     public Pessoa cadastrar(@RequestBody Pessoa pessoa) {
         return this.service.salvar(pessoa);
+    }
+
+    @DeleteMapping("/{id}")
+    public void remover(@PathVariable String id) {
+        this.service.remover(id);
+    }
+
+    @PutMapping("/{id}")
+    public Pessoa atualizar(@PathVariable String id, @RequestBody Pessoa newPessoa) {
+        Pessoa p = new Pessoa(
+                id,
+                newPessoa.nome(),
+                newPessoa.dataNascimento(),
+                newPessoa.ativo()
+        );
+
+        return this.service.atualizar(p);
     }
 }
