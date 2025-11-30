@@ -1,11 +1,9 @@
-package br.com.fatec.modulo1.controller.adapter;
+package br.com.fatec.modulo1.repository.adapter;
 
 import br.com.fatec.modulo1.entity.Pessoa;
 import br.com.fatec.modulo1.repository.orm.PessoaOrm;
 
-public class PessoaAdapter {
-    private PessoaAdapter() {}
-
+public class PessoaRepositoryAdapter {
     public static Pessoa convertToEntity(PessoaOrm orm) {
         return new Pessoa(
                 orm.id(),
