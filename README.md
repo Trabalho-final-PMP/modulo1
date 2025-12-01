@@ -50,8 +50,8 @@ Siga os passos abaixo para rodar a aplicação e todos os serviços dependentes.
 
 ### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+git clone https://github.com/Trabalho-final-PMP/modulo1.git
+cd modulo1
 ```
 
 ### 2. Rodar o docker-compose
