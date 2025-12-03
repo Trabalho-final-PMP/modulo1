@@ -64,7 +64,23 @@ Com um HTTP Client de sua preferência (Insomnia, Postman, e outros), consulte a
 
 - `GET http://localhost:8080/modulo1/v1/pessoa`
 - `POST http://localhost:8080/modulo1/v1/pessoa`
+  - Body necessario:
+    ```JSON
+        {
+            "nome": "John Doe",
+            "dataNascimento": "11/11/2025",
+            "ativo": true
+        }
+     ```
 - `PUT http://localhost:8080/modulo1/v1/pessoa/{id}`
+  - Body necessario:
+    ```JSON
+        {
+            "nome": "John Doe",
+            "dataNascimento": "11/11/2025",
+            "ativo": true
+        }
+    ```
 - `DELETE http://localhost:8080/modulo1/v1/pessoa/{id}`
 
 ## Status
